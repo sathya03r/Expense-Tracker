@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Expenses</title>
+</head>
+<style>
+/* Global reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and main content */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: row;
+    background-color: #f4f4f4;
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    position: fixed;
+    height: 100%;
+    padding-top: 20px;
+}
+
+.sidebar h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #fff;
+}
+
+.sidebar-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar-links a {
+    text-decoration: none;
+    color: #fff;
+    padding: 15px;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    border-bottom: 1px solid #555;
+    transition: background-color 0.3s;
+}
+
+.sidebar-links a:hover {
+    background-color: #555;
+}
+
+.expense_list{
+    margin-left: 399px;
+    margin-top: 5%;
+    background:linear-gradient(rgb(253, 174, 174),skyblue,blue);
+padding: 15px;
+border-radius: 15px;
+
+}
+.expense_list h2{
+    text-align: center;
+    color: rgb(8, 8, 8);
+}
+.egrid{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    gap: 10px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+.egrid div{
+    padding: 10px;
+    background-color: #696363;
+    color:rgb(238, 229, 151);
+    border: 1px solid #ccc;
+    text-align: center;
+    font-size: large;
+}
+.egrid button{
+    background-color: rgb(76, 76, 245);
+    border: none;
+    color: beige;
+    font-size: large;
+    padding: 5px;
+    margin-left: 5px;
+}
+.egrid button:hover{
+    cursor: pointer;
+}
+.income_list{
+    margin-top: 5%;
+    margin-left: 399px;
+    background:linear-gradient(blue,skyblue,rgb(247, 184, 184));
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+}
+.income_list h2{
+    color: whitesmoke;
+}
+
+.igrid{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 10px;
+    background-color: rgb(233, 235, 238);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+   
+}
+.igrid div{
+    padding: 10px;
+    background-color:gray;
+    border: 1px solid #ccc;
+    text-align: center;
+    color: cyan;
+    font-size: large;
+}
+.igrid button{
+    margin-left: 5px;
+    padding: 5px;
+    background-color: rgb(93, 93, 255);
+    border: none;
+    color: wheat;
+    font-size: large;
+}
+.igrid button:hover{
+    cursor: pointer;
+}
+
+
+
+
+</style>
+<body>
+    <div>
+        <div class="sidebar">
+            <h1>Expense Tracker</h1>
+            <div class="sidebar-links">
+                <a href="exp.html">Home</a>
+                <a href="expense.html">Expenses</a>
+                <a href="income.html">Income</a>
+                <a href="allexp.html">All expenses</a>
+                <a href="total.html">Total</a>
+            </div>  
+    </div>
+
+
+   <div class="all list">
+    <div class="expense_list">
+        <h2>Expense List</h2>
+        <div class="egrid">
+            <div>Expense Name</div>
+            <div>Amount</div>
+            <div>category</div>
+            <div>Date</div>
+            <div>Action</div>
+        </div>
+        <div class="egrid" id="egrid">
+           
+
+        </div>
+
+    </div>
+    
+     <div class="income_list">
+        <h2>Income List</h2>
+        <div class="igrid">
+            <div> Name</div>
+            <div>Amount</div>
+            <div>Date</div>
+            <div>Actions</div>
+
+        </div>
+        <div class="igrid" id="igrid">
+       
+        </div> 
+    </div>
+        
+   </div>
+    <script>
+        const egrid=document.getElementById('egrid')
+        function loadall(){
+            loadexpense()
+            loadincome()
+        }
+
+      function loadexpense()  {
+        egrid.innerHTML=''
+        const expense=JSON.parse(localStorage.getItem('expense'))||[]
+        expense.forEach((expenses,index) => {
+            const{name,amount,category,edate}=expenses;
+
+            const namediv=document.createElement('div')
+            const amountdiv=document.createElement('div')
+            const categorydiv=document.createElement('div')
+            const edatediv=document.createElement('div')
+            
+
+            namediv.textContent=name;
+            amountdiv.textContent=amount;
+            categorydiv.textContent=category
+            edatediv.textContent=edate
+
+            const editbutton=document.createElement('button')
+            editbutton.textContent='Edit';
+            editbutton.classList.add('edit')
+
+            const delbtn=document.createElement('button')
+            delbtn.textContent='Delete';
+            delbtn.classList.add('delete')
+
+            editbutton.addEventListener('click',()=>editexp(index))
+            delbtn.addEventListener('click',()=>delexp(index))
+            
+            const button=document.createElement('div')
+            button.classList.add('buttons');
+            button.appendChild(editbutton)
+            button.appendChild(delbtn)
+
+
+            egrid.appendChild(namediv);
+            egrid.appendChild(amountdiv);
+            egrid.appendChild(categorydiv)
+            egrid.appendChild(edatediv)
+            egrid.appendChild(button)
+        });
+      }
+        function editexp(index){
+            const expense=JSON.parse(localStorage.getItem('expense'))||[]
+            const expenses=expense[index]
+            const name=prompt('Edit Name',expenses.name);
+            const amount=prompt('edit amount',expenses.amount);
+            const category=prompt('edit category',expenses.category);
+            const edate=prompt('edit date',expenses.edate);
+            if(name&&amount&&category&&edate){
+             expense[index]={name,amount,category,edate}
+             localStorage.setItem('expense',JSON.stringify(expense));
+             loadexpense()
+            }
+            else{
+                alert('enter all fields')
+            }
+        }
+        function delexp(index){
+            const expense=JSON.parse(localStorage.getItem('expense'))||[];
+            expense.splice(index,1);
+            localStorage.setItem('expense',JSON.stringify(expense))
+            loadexpense()
+        }
+    
+
+
+        // income grid
+        const igrid=document.getElementById('igrid')
+    
+         function loadincome()     {
+            igrid.innerHTML=''
+        
+        const income=JSON.parse(localStorage.getItem('income'))||[]
+        income.forEach((incomes,index)=>{
+            const{iname,iamount,idate}=incomes;
+
+            const inamediv=document.createElement('div')
+            const iamountdiv=document.createElement('div')
+            const idatediv=document.createElement('div')
+
+
+            inamediv.textContent=iname;
+            iamountdiv.textContent=iamount
+            idatediv.textContent=idate
+
+
+            const iedit=document.createElement('button')
+            iedit.textContent='Edit';
+            iedit.classList.add('edit')
+
+
+            const idelete=document.createElement('button')
+            idelete.textContent='Delete';
+            idelete.classList.add('delete')
+
+            iedit.addEventListener('click',()=>editinc(index))
+            idelete.addEventListener('click',()=>delinc(index))
+
+            const incbtn=document.createElement('div')
+            incbtn.classList.add('buttons');
+            incbtn.appendChild(iedit)
+            incbtn.appendChild(idelete)
+
+
+            igrid.appendChild(inamediv)
+            igrid.appendChild(iamountdiv)
+            igrid.appendChild(idatediv)
+            igrid.appendChild(incbtn)
+
+        });
+    }
+        function editinc(index){
+            const income=JSON.parse(localStorage.getItem('income'))||[]
+            const incomes=income[index]
+            const iname=prompt('edit name',incomes.iname);
+            const iamount=prompt('edit amount',incomes.iamount)
+            const idate=prompt('edit date',incomes.idate)
+
+            if (iname&&iamount&&idate){
+                income[index]={iname,iamount,idate}
+                localStorage.setItem('income',JSON.stringify(income))
+                loadincome()
+            }
+            else{
+                alert('fill all fields')
+            }
+        }
+
+        function delinc(index){
+         const income=JSON.parse(localStorage.getItem('income'))||[]
+         income.splice(index,1)
+         localStorage.setItem('income',JSON.stringify(income))
+         loadincome()
+        }
+    
+        window.onload=loadall;
+        
+      
+    </script>
+</body>
+</html>

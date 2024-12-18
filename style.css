@@ -1,0 +1,182 @@
+/* Global reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and main content */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: row;
+    background-color: #f4f4f4;
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    position: fixed;
+    height: 100%;
+    padding-top: 20px;
+}
+
+.sidebar h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #fff;
+}
+
+.sidebar-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar-links a {
+    text-decoration: none;
+    color: #fff;
+    padding: 15px;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    border-bottom: 1px solid #555;
+    transition: background-color 0.3s;
+}
+
+.sidebar-links a:hover {
+    background-color: #555;
+}
+
+/* Main content area */
+.home {
+    margin-left: 260px; /* To create space for sidebar */
+    padding: 20px;
+    flex: 1;
+}
+
+.home h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.home_text p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.home_btn {
+    display: flex;
+    gap: 20px;
+}
+
+.home_btn button {
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    background-color: #28a745;
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.home_btn button:hover {
+    background-color: #218838;
+}
+
+/* /* Media Query  */
+.expense{
+    background-color: rgb(255, 214, 163);
+  
+}
+.expenses{
+    margin-left: 500px;
+}
+.expenses h1{
+    text-align: center;
+    padding-top: 10%;
+}
+.exp_form{
+    width: 100%;
+    padding: 5%;
+    margin-top:15%;
+    background-color: rgb(42, 165, 89);
+    border-radius: 5%;
+    border: none;
+}
+.exp_form input{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+}
+.exp_form label{
+    color: white;
+    font-size: larger; 
+}
+.exp_form select{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+}
+.exp_form button{
+    padding: 11px;
+    border: none;
+    border-radius: 5%;
+    background-color: rgb(4, 141, 196);
+    color: aliceblue;
+    font-size: larger;
+}
+.incomes{
+    background-color: rgb(245, 201, 146);
+}
+.income {
+    margin-left: 500px;
+    margin-top: 5%;
+}
+.income h1{
+    margin-left: 10%;
+}
+.inc_f{
+  
+    height: fit-content;
+    width: 66%;
+    padding: 5%;
+    margin-top:10%;
+    background-color: rgb(42, 165, 89);
+    border-radius: 5%;
+    border: none;
+}
+.inc_f input{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+}
+.inc_f label{
+    color: white;
+    font-size: larger; 
+}
+
+.inc_f button{
+    padding: 11px;
+    border: none;
+    border-radius: 5%;
+    background-color: rgb(4, 141, 196);
+    color: aliceblue;
+    font-size: larger;
+}
+.inc_f h3{
+    text-align: center;
+    padding-bottom: 5%;
+}

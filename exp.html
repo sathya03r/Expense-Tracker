@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h1>Expense Tracker</h1>
+        <div class="sidebar-links">
+            <a href="exp.html">Home</a>
+            <a href="expense.html">Expenses</a>
+            <a href="income.html">Income</a>
+            <a href="allexp.html">All expenses</a>
+            <a href="total.html">Total</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="home">
+        <h1>Welcome to the Expense Tracker page!</h1>
+        <div class="home_text">
+            <p>An expense tracker is a tool or application that helps individuals or businesses monitor and manage their spending by recording expenses, categorizing them, and providing insights into financial habits. The main goal of an expense tracker is to ensure that the user stays within their budget, understands their spending patterns, and can identify areas where savings can be made.</p>
+        </div>
+        <div class="home_btn">
+            <button onclick="exppage()">Expense</button>
+            <button onclick="incpage()">Income</button>
+        </div>
+    </div>
+
+    <script>
+        function exppage(){
+            window.location.href="expense.html"
+        }
+        function incpage(){
+            window.location.href="income.html"
+        }
+    </script>
+</body>
+</html>
